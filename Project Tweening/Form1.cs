@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Timers;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +22,8 @@ namespace WindowsFormsApp1
         int current = 1;
         float[] x = new float[50];
         float[] y = new float[50];
+
+        static System.Timers.Timer aTimer;
         /*
             points[0] = {
              */
@@ -92,15 +95,24 @@ namespace WindowsFormsApp1
         private void animate()
         {
             // optimal a <= 5000
-            for (int a = 1; a <= 2000; a++)
-            {
-                Console.Write("haha");
-            }
+            // for (int a = 1; a <= 2000; a++)
+            // {
+            //     Console.Write("haha");
+            // }
+            aTimer = new System.Timers.Timer(
+                Interval: 500
+            );
+            aTimer.Enabled = true;
+            aTimer.Tick += new ElapsedEventArgs(onTimerEvent);
+
             g.Clear(Color.White);
-            for (int i = 0; i < maxpoint; i++)
-            {
-                g.DrawEllipse(p, points[i].X, points[i].Y, 2, 2);
-                if (i > 0) g.DrawLine(line, points[i - 1].X, points[i - 1].Y, points[i].X, points[i].Y);
+
+            if(aTimer != 0) {
+                for (int i = 0; i < maxpoint; i++)
+                {
+                    g.DrawEllipse(p, points[i].X, points[i].Y, 2, 2);
+                    if (i > 0) g.DrawLine(line, points[i - 1].X, points[i - 1].Y, points[i].X, points[i].Y);
+                }
             }
         }
         private void button_animate_Click(object sender, EventArgs e)
@@ -168,6 +180,10 @@ namespace WindowsFormsApp1
                 g.DrawLine(bkStift, P1, P2);
                 g.DrawLine(bkStift, P2, P3);
             }
+        }
+
+        private void onTimerEvent(object sender, ElapsedEventArgs e) {
+            Console.WriteLine("{0}", e.SignalTime);
         }
     }
 }

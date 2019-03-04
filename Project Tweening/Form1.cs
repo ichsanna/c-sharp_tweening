@@ -17,8 +17,8 @@ namespace WindowsFormsApp1
         PointF cursor;
         Pen line = new Pen(Color.CadetBlue, 3);
         Pen erase = new Pen(Color.White, 3);
-        PointF[] points = new PointF[200];
-        PointF[] points2 = new PointF[200];
+        PointF[] points = new PointF[400];
+        PointF[] points2 = new PointF[400];
         int maxpoint = 0;
         int maxpoint2 = 0;
         int current = 1;
@@ -26,14 +26,17 @@ namespace WindowsFormsApp1
         int join2 = 0;
         int frame = 60;
         int tick = 0;
-        int[] curvepos = new int[200];
-        int[] curvepos2 = new int[200];
-        float[] x = new float[200];
-        float[] y = new float[200];
+        int animatedari = 1;
+        int[] curvepos = new int[400];
+        int[] curvepos2 = new int[400];
+        float[] x = new float[400];
+        float[] y = new float[400];
         public Form1()
         {
             InitializeComponent();
             g = pb_canvas.CreateGraphics();
+            DoubleBuffered = true;
+            label_canvas.Text = "Current layer: " + current;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -105,12 +108,13 @@ namespace WindowsFormsApp1
                 {
                     if (i > 0) g.DrawLine(line, points[i - 1].X, points[i - 1].Y, points[i].X, points[i].Y);
                 }
-                g.DrawEllipse(p, points[i].X, points[i].Y, 2, 2);
+                //g.DrawEllipse(p, points[i].X, points[i].Y, 2, 2);
             }
             if (join == 1) g.DrawLine(line, points[maxpoint - 1].X, points[maxpoint - 1].Y, points[0].X, points[0].Y);
         }
         private void button_animate_Click(object sender, EventArgs e)
         {
+            animatedari = 1;
             current = 1;
             for (int k = 0; k < maxpoint; k++)
             {
@@ -232,13 +236,24 @@ namespace WindowsFormsApp1
             new PointF(341, 400 - 120),
             new PointF(357, 400 - 120),
             new PointF(374, 400 - 121),
+            new PointF(390, 400 - 122),
             new PointF(405, 400 - 123),
+            new PointF(418, 400 - 127),
             new PointF(430, 400 - 130),
+            new PointF(438, 400 - 134),
             new PointF(448, 400 - 140),
+            new PointF(455, 400 - 150),
             new PointF(460, 400 - 158),
+            new PointF(464, 400 - 169),
             new PointF(467, 400 - 178),
+            new PointF(468, 400 - 187),
+            new PointF(469, 400 - 195),
             new PointF(471, 400 - 203),
+            new PointF(472, 400 - 210),
+            new PointF(473, 400 - 216),
             new PointF(475, 400 - 225),
+            new PointF(480, 400 - 225),
+            new PointF(487, 400 - 225),
             new PointF(499, 400 - 226),
             new PointF(508, 400 - 230),
             new PointF(516, 400 - 238),
@@ -247,11 +262,17 @@ namespace WindowsFormsApp1
             new PointF(535, 400 - 273),
             new PointF(536, 400 - 282),
             new PointF(533, 400 - 285),
+            new PointF(523, 400 - 283),
             new PointF(515, 400 - 281),
             new PointF(505, 400 - 280),
+            new PointF(497, 400 - 281),
+            new PointF(491, 400 - 283),
             new PointF(483, 400 - 285),
             new PointF(473, 400 - 284),
+            new PointF(467, 400 - 281),
             new PointF(462, 400 - 279),
+            new PointF(450, 400 - 286),
+            new PointF(456, 400 - 282),
             new PointF(444, 400 - 289),
             new PointF(435, 400 - 289),
             new PointF(418, 400 - 285),
@@ -259,10 +280,13 @@ namespace WindowsFormsApp1
             new PointF(404, 400 - 289),
             new PointF(400, 400 - 289),
             new PointF(396, 400 - 285),
+            new PointF(396, 400 - 266),
             new PointF(396, 400 - 256),
+            new PointF(400, 400 - 249),
             new PointF(404, 400 - 242),
             new PointF(413, 400 - 236),
             new PointF(421, 400 - 234),
+            new PointF(429, 400 - 234),
             new PointF(440, 400 - 234),
             new PointF(440, 400 - 223),
             new PointF(436, 400 - 212),
@@ -279,13 +303,19 @@ namespace WindowsFormsApp1
             new PointF(321, 400 - 264),
             new PointF(309, 400 - 270),
             new PointF(295, 400 - 275),
+            new PointF(283, 400 - 275),
             new PointF(269, 400 - 276),
-            new PointF(243, 400 - 276),
+            new PointF(260, 400 - 276),
+            new PointF(253, 400 - 276),
+            new PointF(233, 400 - 276),
             new PointF(226, 400 - 277),
             new PointF(208, 400 - 279),
+            new PointF(197, 400 - 280),
             new PointF(187, 400 - 281),
+            new PointF(174, 400 - 280),
             new PointF(166, 400 - 280),
-            new PointF(148, 400 - 273)
+            new PointF(148, 400 - 273),
+            new PointF(141, 400 - 268)
             };
             maxpoint = whale.Count;
             points = whale.ToArray();
@@ -411,19 +441,36 @@ namespace WindowsFormsApp1
             tick++;
             if (tick >= 10000) tick = 0;
 
-            for (int m = 0; m < maxpoint; m++)
+            if (animatedari == 1)
             {
-                points[m].X = points[m].X - (x[m] / frame);
-                points[m].Y = points[m].Y - (y[m] / frame);
+                for (int m = 0; m < maxpoint; m++)
+                {
+                    points[m].X = points[m].X - (x[m] / frame);
+                    points[m].Y = points[m].Y - (y[m] / frame);
+                }
+                animate();
             }
-            animate();
-            //for (int m = 0; m < maxpoint; m++)
-            //{
-            //    points[m].X = points[m].X - (x[m] / frame);
-            //    points[m].Y = points[m].Y - (y[m] / framenote);
-            //}
-            //animate();
-            if (tick >= frame) timer1.Enabled = false;
+            else if (animatedari == 2)
+            {
+                for (int m = 0; m < maxpoint; m++)
+                {
+                    points[m].X = points[m].X + (x[m] / frame);
+                    points[m].Y = points[m].Y + (y[m] / frame);
+                }
+                animate();
+            }
+            if (tick >= frame)
+            {
+                if (animatedari == 1)
+                {
+                    tick = 0;
+                    animatedari = 2;
+                }
+                else if (animatedari == 2)
+                {
+                    timer1.Enabled = false;
+                }
+            }
         }
     }
 }

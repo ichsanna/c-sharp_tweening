@@ -232,14 +232,14 @@ namespace WindowsFormsApp1
         private void draw_whale_Click(object sender, EventArgs e)
         {
             maxpoint2 = 36;
-            points2[0].X = 137; points2[0].Y = 400 - 267;
-            points2[1].X = 96; points2[1].Y = 400 - 227;
-            points2[2].X = 96; points2[2].Y = 400 - 192;
-            points2[3].X = 98; points2[3].Y = 400 - 161;
-            points2[4].X = 106; points2[4].Y = 400 - 120;
-            points2[5].X = 177; points2[5].Y = 400 - 102;
-            points2[6].X = 290; points2[6].Y = 400 - 104;
-            points2[7].X = 378; points2[7].Y = 400 - 106;
+            points2[0].X = 135; points2[0].Y = 400 - 263;
+            points2[1].X = 125; points2[1].Y = 400 - 250;
+            points2[2].X = 122; points2[2].Y = 400 - 234;
+            points2[3].X = 121; points2[3].Y = 400 - 216;
+            points2[4].X = 123; points2[4].Y = 400 - 203;
+            points2[5].X = 126; points2[5].Y = 400 - 191;
+            points2[6].X = 125; points2[6].Y = 400 - 172;
+            points2[7].X = 125; points2[7].Y = 400 - 154;
             points2[8].X = 426; points2[8].Y = 400 - 124;
             points2[9].X = 450; points2[9].Y = 400 - 187;
             points2[10].X = 453; points2[10].Y = 400 - 208;

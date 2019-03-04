@@ -17,8 +17,8 @@ namespace WindowsFormsApp1
         PointF cursor;
         Pen line = new Pen(Color.CadetBlue, 3);
         Pen erase = new Pen(Color.White, 3);
-        PointF[] points = new PointF[100];
-        PointF[] points2 = new PointF[100];
+        PointF[] points = new PointF[200];
+        PointF[] points2 = new PointF[200];
         int maxpoint = 0;
         int maxpoint2 = 0;
         int current = 1;
@@ -26,10 +26,10 @@ namespace WindowsFormsApp1
         int join2 = 0;
         int frame = 60;
         int tick = 0;
-        int[] curvepos = new int[100];
-        int[] curvepos2 = new int[100];
-        float[] x = new float[100];
-        float[] y = new float[100];
+        int[] curvepos = new int[200];
+        int[] curvepos2 = new int[200];
+        float[] x = new float[200];
+        float[] y = new float[200];
         public Form1()
         {
             InitializeComponent();

@@ -237,7 +237,7 @@ namespace WindowsFormsApp1
             new PointF(467, 400 - 178),
             new PointF(471, 400 - 203),
             new PointF(475, 400 - 225),
-            new PointF(499, 400 - 256),
+            new PointF(499, 400 - 226),
             new PointF(508, 400 - 230),
             new PointF(516, 400 - 238),
             new PointF(524, 400 - 250),

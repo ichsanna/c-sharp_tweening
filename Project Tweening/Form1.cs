@@ -468,6 +468,7 @@ namespace WindowsFormsApp1
                 }
                 else if (animatedari == 2)
                 {
+                    tick = 0;
                     timer1.Enabled = false;
                 }
             }

@@ -40,12 +40,14 @@ namespace WindowsFormsApp1
         {
             current = 1;
             draw();
+            label_canvas.Text = "Current layer: " + current;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             current = 2;
             draw();
+            label_canvas.Text = "Current layer: " + current;
         }
         private void draw()
         {
@@ -67,7 +69,7 @@ namespace WindowsFormsApp1
                     {
                         if (i > 0) g.DrawLine(line, points[i - 1].X, points[i - 1].Y, points[i].X, points[i].Y);
                     }
-                    g.DrawEllipse(p, points[i].X, points[i].Y, 2, 2);
+                    //g.DrawEllipse(p, points[i].X, points[i].Y, 2, 2);
                 }
                 if (join == 1) g.DrawLine(line, points[maxpoint - 1].X, points[maxpoint - 1].Y, points[0].X, points[0].Y);
             }
@@ -84,7 +86,7 @@ namespace WindowsFormsApp1
                     {
                         if (i > 0) g.DrawLine(line, points2[i - 1].X, points2[i - 1].Y, points2[i].X, points2[i].Y);
                     }
-                    g.DrawEllipse(p, points2[i].X, points2[i].Y, 2, 2);
+                    //g.DrawEllipse(p, points2[i].X, points2[i].Y, 2, 2);
                 }
                 if (join2 == 1) g.DrawLine(line, points2[maxpoint2 - 1].X, points2[maxpoint2 - 1].Y, points2[0].X, points2[0].Y);
             }
@@ -122,7 +124,6 @@ namespace WindowsFormsApp1
         {
             cursor = pb_canvas.PointToClient(Cursor.Position);
             mouseStatus.Text = "X: " + cursor.X + " Y: " + cursor.Y;
-            label_canvas.Text = "Current layer: " + current;
         }
 
         private void pb_canvas_MouseClick(object sender, MouseEventArgs e)
@@ -140,7 +141,8 @@ namespace WindowsFormsApp1
 
         private void button_makecurve_Click(object sender, EventArgs e)
         {
-            makecurve(maxpoint);
+            if (current==1) makecurve(maxpoint);
+            else if (current == 2) makecurve(maxpoint2);
         }
         private void makecurve(int currentpoint)
         {
@@ -377,6 +379,12 @@ namespace WindowsFormsApp1
                 points[m].Y = points[m].Y - (y[m] / frame);
             }
             animate();
+            //for (int m = 0; m < maxpoint; m++)
+            //{
+            //    points[m].X = points[m].X - (x[m] / frame);
+            //    points[m].Y = points[m].Y - (y[m] / framenote);
+            //}
+            //animate();
             if (tick >= frame) timer1.Enabled = false;
         }
     }

@@ -41,7 +41,6 @@
             this.draw_whale = new System.Windows.Forms.Button();
             this.draw_elephant = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.comboBox_drawing = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pb_canvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -136,7 +135,7 @@
             // 
             // draw_whale
             // 
-            this.draw_whale.Location = new System.Drawing.Point(938, 144);
+            this.draw_whale.Location = new System.Drawing.Point(922, 129);
             this.draw_whale.Name = "draw_whale";
             this.draw_whale.Size = new System.Drawing.Size(96, 31);
             this.draw_whale.TabIndex = 13;
@@ -146,7 +145,7 @@
             // 
             // draw_elephant
             // 
-            this.draw_elephant.Location = new System.Drawing.Point(938, 181);
+            this.draw_elephant.Location = new System.Drawing.Point(922, 166);
             this.draw_elephant.Name = "draw_elephant";
             this.draw_elephant.Size = new System.Drawing.Size(96, 31);
             this.draw_elephant.TabIndex = 14;
@@ -159,24 +158,12 @@
             this.timer1.Interval = 50;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // comboBox_drawing
-            // 
-            this.comboBox_drawing.FormattingEnabled = true;
-            this.comboBox_drawing.Items.AddRange(new object[] {
-            "Whale",
-            "Elephant"});
-            this.comboBox_drawing.Location = new System.Drawing.Point(735, 16);
-            this.comboBox_drawing.Name = "comboBox_drawing";
-            this.comboBox_drawing.Size = new System.Drawing.Size(121, 24);
-            this.comboBox_drawing.TabIndex = 15;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1080, 565);
-            this.Controls.Add(this.comboBox_drawing);
             this.Controls.Add(this.draw_elephant);
             this.Controls.Add(this.draw_whale);
             this.Controls.Add(this.label_canvas);
@@ -209,7 +196,6 @@
         private System.Windows.Forms.Button draw_whale;
         private System.Windows.Forms.Button draw_elephant;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.ComboBox comboBox_drawing;
     }
 }
 

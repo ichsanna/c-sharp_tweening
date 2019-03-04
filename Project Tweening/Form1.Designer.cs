@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListView();
+            this.components = new System.ComponentModel.Container();
             this.mouseStatus = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -37,19 +37,13 @@
             this.button_makecurve = new System.Windows.Forms.Button();
             this.button_reset = new System.Windows.Forms.Button();
             this.button_join = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label_canvas = new System.Windows.Forms.Label();
             this.draw_whale = new System.Windows.Forms.Button();
             this.draw_elephant = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.comboBox_drawing = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pb_canvas)).BeginInit();
             this.SuspendLayout();
-            // 
-            // listBox1
-            // 
-            this.listBox1.Location = new System.Drawing.Point(859, 12);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(209, 524);
-            this.listBox1.TabIndex = 1;
-            this.listBox1.UseCompatibleStateImageBehavior = false;
             // 
             // mouseStatus
             // 
@@ -82,7 +76,7 @@
             // 
             // button_animate
             // 
-            this.button_animate.Location = new System.Drawing.Point(683, 12);
+            this.button_animate.Location = new System.Drawing.Point(267, 12);
             this.button_animate.Name = "button_animate";
             this.button_animate.Size = new System.Drawing.Size(82, 31);
             this.button_animate.TabIndex = 6;
@@ -103,7 +97,7 @@
             // 
             // button_makecurve
             // 
-            this.button_makecurve.Location = new System.Drawing.Point(209, 12);
+            this.button_makecurve.Location = new System.Drawing.Point(922, 12);
             this.button_makecurve.Name = "button_makecurve";
             this.button_makecurve.Size = new System.Drawing.Size(112, 31);
             this.button_makecurve.TabIndex = 9;
@@ -113,7 +107,7 @@
             // 
             // button_reset
             // 
-            this.button_reset.Location = new System.Drawing.Point(771, 12);
+            this.button_reset.Location = new System.Drawing.Point(355, 12);
             this.button_reset.Name = "button_reset";
             this.button_reset.Size = new System.Drawing.Size(82, 31);
             this.button_reset.TabIndex = 10;
@@ -123,7 +117,7 @@
             // 
             // button_join
             // 
-            this.button_join.Location = new System.Drawing.Point(327, 12);
+            this.button_join.Location = new System.Drawing.Point(922, 52);
             this.button_join.Name = "button_join";
             this.button_join.Size = new System.Drawing.Size(112, 31);
             this.button_join.TabIndex = 11;
@@ -131,18 +125,18 @@
             this.button_join.UseVisualStyleBackColor = true;
             this.button_join.Click += new System.EventHandler(this.button_join_Click);
             // 
-            // label1
+            // label_canvas
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(264, 542);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "label1";
+            this.label_canvas.AutoSize = true;
+            this.label_canvas.Location = new System.Drawing.Point(264, 542);
+            this.label_canvas.Name = "label_canvas";
+            this.label_canvas.Size = new System.Drawing.Size(46, 17);
+            this.label_canvas.TabIndex = 12;
+            this.label_canvas.Text = "label1";
             // 
             // draw_whale
             // 
-            this.draw_whale.Location = new System.Drawing.Point(464, 12);
+            this.draw_whale.Location = new System.Drawing.Point(938, 144);
             this.draw_whale.Name = "draw_whale";
             this.draw_whale.Size = new System.Drawing.Size(96, 31);
             this.draw_whale.TabIndex = 13;
@@ -152,7 +146,7 @@
             // 
             // draw_elephant
             // 
-            this.draw_elephant.Location = new System.Drawing.Point(566, 12);
+            this.draw_elephant.Location = new System.Drawing.Point(938, 181);
             this.draw_elephant.Name = "draw_elephant";
             this.draw_elephant.Size = new System.Drawing.Size(96, 31);
             this.draw_elephant.TabIndex = 14;
@@ -160,15 +154,32 @@
             this.draw_elephant.UseVisualStyleBackColor = true;
             this.draw_elephant.Click += new System.EventHandler(this.draw_elephant_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 50;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // comboBox_drawing
+            // 
+            this.comboBox_drawing.FormattingEnabled = true;
+            this.comboBox_drawing.Items.AddRange(new object[] {
+            "Whale",
+            "Elephant"});
+            this.comboBox_drawing.Location = new System.Drawing.Point(735, 16);
+            this.comboBox_drawing.Name = "comboBox_drawing";
+            this.comboBox_drawing.Size = new System.Drawing.Size(121, 24);
+            this.comboBox_drawing.TabIndex = 15;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1080, 565);
+            this.Controls.Add(this.comboBox_drawing);
             this.Controls.Add(this.draw_elephant);
             this.Controls.Add(this.draw_whale);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label_canvas);
             this.Controls.Add(this.button_join);
             this.Controls.Add(this.button_reset);
             this.Controls.Add(this.button_makecurve);
@@ -177,7 +188,6 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.mouseStatus);
-            this.Controls.Add(this.listBox1);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pb_canvas)).EndInit();
@@ -187,7 +197,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.ListView listBox1;
         private System.Windows.Forms.Label mouseStatus;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
@@ -196,9 +205,11 @@
         private System.Windows.Forms.Button button_makecurve;
         private System.Windows.Forms.Button button_reset;
         private System.Windows.Forms.Button button_join;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label_canvas;
         private System.Windows.Forms.Button draw_whale;
         private System.Windows.Forms.Button draw_elephant;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ComboBox comboBox_drawing;
     }
 }
 

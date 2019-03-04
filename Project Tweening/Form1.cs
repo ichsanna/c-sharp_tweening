@@ -24,6 +24,8 @@ namespace WindowsFormsApp1
         int current = 1;
         int join = 0;
         int join2 = 0;
+        int frame = 60;
+        int tick = 0;
         int[] curvepos = new int[100];
         int[] curvepos2 = new int[100];
         float[] x = new float[100];
@@ -52,10 +54,14 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < maxpoint; i++)
                 {
+                    //Label namelabel = new Label();
+                    //namelabel.Location = new PointF(Convert.ToInt32(points[i].X + 1), Convert.ToInt32(points[i].Y + 1));
+                    //namelabel.Text = i.ToString();
+                    //pb_canvas.Controls.Add(namelabel);
                     if (curvepos[i] == 1)
                     {
                         i++;
-                        makecurve(i+1);
+                        makecurve(i + 1);
                     }
                     else
                     {
@@ -63,7 +69,7 @@ namespace WindowsFormsApp1
                     }
                     g.DrawEllipse(p, points[i].X, points[i].Y, 2, 2);
                 }
-                if (join==1) g.DrawLine(line, points[maxpoint - 1].X, points[maxpoint - 1].Y, points[0].X, points[0].Y);
+                if (join == 1) g.DrawLine(line, points[maxpoint - 1].X, points[maxpoint - 1].Y, points[0].X, points[0].Y);
             }
             if (current == 2)
             {
@@ -72,7 +78,7 @@ namespace WindowsFormsApp1
                     if (curvepos2[i] == 1)
                     {
                         i++;
-                        makecurve(i+1);
+                        makecurve(i + 1);
                     }
                     else
                     {
@@ -80,16 +86,11 @@ namespace WindowsFormsApp1
                     }
                     g.DrawEllipse(p, points2[i].X, points2[i].Y, 2, 2);
                 }
-                if (join2==1) g.DrawLine(line, points2[maxpoint2 - 1].X, points2[maxpoint2 - 1].Y, points2[0].X, points2[0].Y);
+                if (join2 == 1) g.DrawLine(line, points2[maxpoint2 - 1].X, points2[maxpoint2 - 1].Y, points2[0].X, points2[0].Y);
             }
         }
         private void animate()
         {
-            // optimal a <= 4000
-            for (int a = 1; a <= 50000; a++)
-            {
-                Console.Write("haha");
-            }
             g.Clear(Color.White);
             for (int i = 0; i < maxpoint; i++)
             {
@@ -109,44 +110,23 @@ namespace WindowsFormsApp1
         private void button_animate_Click(object sender, EventArgs e)
         {
             current = 1;
-            int frame = 60;
-            for (int z = 0; z <= 2; z++)
+            for (int k = 0; k < maxpoint; k++)
             {
-                for (int k = 0; k < maxpoint; k++)
-                {
-                    x[k] = points[k].X - points2[k].X;
-                    y[k] = points[k].Y - points2[k].Y;
-                }
-                for (int l = 0; l < frame; l++)
-                {
-                    for (int m = 0; m < maxpoint; m++)
-                    {
-                        points[m].X = points[m].X - (x[m] / frame);
-                        points[m].Y = points[m].Y - (y[m] / frame);
-                    }
-                    animate();
-                }
-                for (int l = 0; l < frame; l++)
-                {
-                    for (int m = maxpoint - 1; m >= 0; m--)
-                    {
-                        points[m].X = points[m].X + (x[m] / frame);
-                        points[m].Y = points[m].Y + (y[m] / frame);
-                    }
-                    animate();
-                }
+                x[k] = points[k].X - points2[k].X;
+                y[k] = points[k].Y - points2[k].Y;
             }
+            timer1.Enabled = true;
         }
 
         private void pb_canvas_MouseMove(object sender, MouseEventArgs e)
         {
             cursor = pb_canvas.PointToClient(Cursor.Position);
-            mouseStatus.Text = "X: " + cursor.X + " Y: " + cursor.Y + " Current:" + current;
+            mouseStatus.Text = "X: " + cursor.X + " Y: " + cursor.Y;
+            label_canvas.Text = "Current layer: " + current;
         }
 
         private void pb_canvas_MouseClick(object sender, MouseEventArgs e)
         {
-            listBox1.Items.Add("X: " + cursor.X + " Y: " + cursor.Y);
             g.DrawEllipse(p, cursor.X - 1, cursor.Y - 1, 2, 2);
             if (current == 1) points[maxpoint++] = new PointF(cursor.X, cursor.Y);
             else if (current == 2) points2[maxpoint2++] = new PointF(cursor.X, cursor.Y);
@@ -221,170 +201,183 @@ namespace WindowsFormsApp1
                 }
             }
         }
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-
-            e.Graphics.ScaleTransform(1.0f, -1.0f);
-            e.Graphics.TranslateTransform(0, -this.ClientRectangle.Height);
-            e.Graphics.DrawLine(Pens.Black, 0, 0, 100, 100);
-        }
         private void draw_whale_Click(object sender, EventArgs e)
         {
-            maxpoint2 = 36;
-            points2[0].X = 135; points2[0].Y = 400 - 263;
-            points2[1].X = 125; points2[1].Y = 400 - 250;
-            points2[2].X = 122; points2[2].Y = 400 - 234;
-            points2[3].X = 121; points2[3].Y = 400 - 216;
-            points2[4].X = 123; points2[4].Y = 400 - 203;
-            points2[5].X = 126; points2[5].Y = 400 - 191;
-            points2[6].X = 125; points2[6].Y = 400 - 172;
-            points2[7].X = 125; points2[7].Y = 400 - 154;
-            points2[8].X = 126; points2[8].Y = 400 - 147;
-            points2[9].X = 129; points2[9].Y = 400 - 140;
-            points2[10].X = 136; points2[10].Y = 400 - 133;
-            points2[11].X = 144; points2[11].Y = 400 - 127;
-            points2[12].X = 156; points2[12].Y = 400 - 123;
-            points2[13].X = 168; points2[13].Y = 400 - 120;
-            points2[14].X = 191; points2[14].Y = 400 - 120;
-            points2[15].X = 207; points2[15].Y = 400 - 120;
-            points2[16].X = 232; points2[16].Y = 400 - 120;
-            points2[17].X = 251; points2[17].Y = 400 - 120;
-            points2[18].X = 271; points2[18].Y = 400 - 120;
-            points2[19].X = 288; points2[19].Y = 400 - 120;
-            points2[20].X = 308; points2[20].Y = 400 - 120;
-            points2[21].X = 324; points2[21].Y = 400 - 120;
-            points2[22].X = 341; points2[22].Y = 400 - 120;
-            points2[23].X = 357; points2[23].Y = 400 - 120;
-            points2[24].X = 374; points2[24].Y = 400 - 121;
-            points2[25].X = 405; points2[25].Y = 400 - 123;
-            points2[26].X = 430; points2[26].Y = 400 - 130;
-            points2[27].X = 448; points2[27].Y = 400 - 140;
-            points2[28].X = 460; points2[28].Y = 400 - 158;
-            points2[29].X = 467; points2[29].Y = 400 - 178;
-            points2[30].X = 471; points2[30].Y = 400 - 203;
-            points2[31].X = 475; points2[31].Y = 400 - 225;
-            points2[32].X = 499; points2[32].Y = 400 - 256;
-            points2[33].X = 508; points2[33].Y = 400 - 230;
-            points2[34].X = 516; points2[34].Y = 400 - 238;
-            points2[35].X = 524; points2[35].Y = 400 - 250;
-            points2[36].X = 529; points2[35].Y = 400 - 261;
-            points2[37].X = 535; points2[35].Y = 400 - 273;
-            points2[38].X = 536; points2[35].Y = 400 - 282;
-            points2[39].X = 533; points2[35].Y = 400 - 285;
-            points2[40].X = 515; points2[35].Y = 400 - 281;
-            points2[41].X = 505; points2[35].Y = 400 - 280;
-            points2[42].X = 483; points2[35].Y = 400 - 285;
-            points2[43].X = 473; points2[35].Y = 400 - 284;
-            points2[44].X = 462; points2[35].Y = 400 - 279;
-            points2[45].X = 444; points2[35].Y = 400 - 289;
-            points2[46].X = 435; points2[35].Y = 400 - 289;
-            points2[47].X = 418; points2[35].Y = 400 - 285;
-            points2[48].X = 412; points2[35].Y = 400 - 286;
-            points2[49].X = 404; points2[35].Y = 400 - 289;
-            points2[50].X = 400; points2[35].Y = 400 - 289;
-            points2[51].X = 396; points2[35].Y = 400 - 285;
-            points2[52].X = 396; points2[35].Y = 400 - 256;
-            points2[53].X = 404; points2[35].Y = 400 - 242;
-            points2[54].X = 413; points2[35].Y = 400 - 236;
-            points2[55].X = 421; points2[35].Y = 400 - 234;
-            points2[56].X = 440; points2[35].Y = 400 - 234;
-            points2[57].X = 440; points2[35].Y = 400 - 223;
-            points2[58].X = 436; points2[35].Y = 400 - 212;
-            points2[59].X = 429; points2[35].Y = 400 - 203;
-            points2[60].X = 416; points2[35].Y = 400 - 195;
-            points2[61].X = 404; points2[35].Y = 400 - 192;
-            points2[62].X = 394; points2[35].Y = 400 - 192;
-            points2[63].X = 385; points2[35].Y = 400 - 194;
-            points2[64].X = 372; points2[35].Y = 400 - 203;
-            points2[65].X = 362; points2[35].Y = 400 - 215;
-            points2[66].X = 348; points2[35].Y = 400 - 232;
-            points2[67].X = 337; points2[35].Y = 400 - 248;
-            points2[68].X = 331; points2[35].Y = 400 - 255;
-            points2[69].X = 321; points2[35].Y = 400 - 264;
-            points2[70].X = 309; points2[35].Y = 400 - 270;
-            points2[71].X = 295; points2[35].Y = 400 - 275;
-            points2[72].X = 269; points2[35].Y = 400 - 276;
-            points2[73].X = 243; points2[35].Y = 400 - 276;
-            points2[74].X = 226; points2[35].Y = 400 - 277;
-            points2[75].X = 208; points2[35].Y = 400 - 279;
-            points2[76].X = 187; points2[35].Y = 400 - 281;
-            points2[77].X = 166; points2[35].Y = 400 - 280;
-            points2[78].X = 148; points2[35].Y = 400 - 273;
+            List<PointF> whale = new List<PointF>()
+            {
+            new PointF(135, 400 - 263),
+            new PointF(125, 400 - 250),        
+            new PointF(122, 400 - 234),        
+            new PointF(121, 400 - 216),        
+            new PointF(123, 400 - 203),        
+            new PointF(126, 400 - 191),        
+            new PointF(125, 400 - 172),        
+            new PointF(125, 400 - 154),        
+            new PointF(126, 400 - 147),        
+            new PointF(129, 400 - 140),            
+            new PointF(136, 400 - 133),
+            new PointF(144, 400 - 127),
+            new PointF(156, 400 - 123),
+            new PointF(168, 400 - 120),
+            new PointF(191, 400 - 120),
+            new PointF(207, 400 - 120),
+            new PointF(232, 400 - 120),
+            new PointF(251, 400 - 120),
+            new PointF(271, 400 - 120),
+            new PointF(288, 400 - 120),
+            new PointF(308, 400 - 120),
+            new PointF(324, 400 - 120),
+            new PointF(341, 400 - 120),
+            new PointF(357, 400 - 120),
+            new PointF(374, 400 - 121),
+            new PointF(405, 400 - 123),
+            new PointF(430, 400 - 130),
+            new PointF(448, 400 - 140),
+            new PointF(460, 400 - 158),
+            new PointF(467, 400 - 178),
+            new PointF(471, 400 - 203),
+            new PointF(475, 400 - 225),
+            new PointF(499, 400 - 256),
+            new PointF(508, 400 - 230),
+            new PointF(516, 400 - 238),
+            new PointF(524, 400 - 250),
+            new PointF(529, 400 - 261),
+            new PointF(535, 400 - 273),
+            new PointF(536, 400 - 282),
+            new PointF(533, 400 - 285),
+            new PointF(515, 400 - 281),
+            new PointF(505, 400 - 280),
+            new PointF(483, 400 - 285),
+            new PointF(473, 400 - 284),
+            new PointF(462, 400 - 279),
+            new PointF(444, 400 - 289),
+            new PointF(435, 400 - 289),
+            new PointF(418, 400 - 285),
+            new PointF(412, 400 - 286),
+            new PointF(404, 400 - 289),
+            new PointF(400, 400 - 289),
+            new PointF(396, 400 - 285),
+            new PointF(396, 400 - 256),
+            new PointF(404, 400 - 242),
+            new PointF(413, 400 - 236),
+            new PointF(421, 400 - 234),
+            new PointF(440, 400 - 234),
+            new PointF(440, 400 - 223),
+            new PointF(436, 400 - 212),
+            new PointF(429, 400 - 203),
+            new PointF(416, 400 - 195),
+            new PointF(404, 400 - 192),
+            new PointF(394, 400 - 192),
+            new PointF(385, 400 - 194),
+            new PointF(372, 400 - 203),
+            new PointF(362, 400 - 215),
+            new PointF(348, 400 - 232),
+            new PointF(337, 400 - 248),
+            new PointF(331, 400 - 255),
+            new PointF(321, 400 - 264),
+            new PointF(309, 400 - 270),
+            new PointF(295, 400 - 275),
+            new PointF(269, 400 - 276),
+            new PointF(243, 400 - 276),
+            new PointF(226, 400 - 277),
+            new PointF(208, 400 - 279),
+            new PointF(187, 400 - 281),
+            new PointF(166, 400 - 280),
+            new PointF(148, 400 - 273),
+            };
+            maxpoint = whale.Count;
+            points = whale.ToArray();
+            join = 1;
+        }
+        private void draw_elephant_Click(object sender, EventArgs e)
+        {
+            List<PointF> elephant = new List<PointF>()
+            {
+            new PointF(126, 400 - 209),
+            new PointF(125, 400 - 193),
+            new PointF(121, 400 - 183),
+            new PointF(118, 400 - 165),
+            new PointF(124, 400 - 131),
+            new PointF(131, 400 - 141),
+            new PointF(136, 400 - 184),
+            new PointF(135, 400 - 208),
+            new PointF(144, 400 - 239),
+            new PointF(145, 400 - 241),
+            new PointF(144, 400 - 235),
+            new PointF(145, 400 - 185),
+            new PointF(145, 400 - 141),
+            new PointF(129, 400 - 86),
+            new PointF(125, 400 - 70),
+            new PointF(127, 400 - 63),
+            new PointF(146, 400 - 57),
+            new PointF(173, 400 - 64),
+            new PointF(177, 400 - 79),
+            new PointF(189, 400 - 128),
+            new PointF(204, 400 - 146),
+            new PointF(213, 400 - 146),
+            new PointF(246, 400 - 135),
+            new PointF(286, 400 - 142),
+            new PointF(306, 400 - 147),
+            new PointF(313, 400 - 144),
+            new PointF(326, 400 - 99),
+            new PointF(338, 400 - 64),
+            new PointF(362, 400 - 57),
+            new PointF(376, 400 - 59),
+            new PointF(381, 400 - 66),
+            new PointF(375, 400 - 91),
+            new PointF(358, 400 - 144),
+            new PointF(363, 400 - 181),
+            new PointF(368, 400 - 185),
+            new PointF(381, 400 - 175),
+            new PointF(390, 400 - 159),
+            new PointF(419, 400 - 123),
+            new PointF(457, 400 - 122),
+            new PointF(486, 400 - 118),
+            new PointF(509, 400 - 141),
+            new PointF(514, 400 - 158),
+            new PointF(508, 400 - 160),
+            new PointF(494, 400 - 160),
+            new PointF(487, 400 - 161),
+            new PointF(484, 400 - 157),
+            new PointF(479, 400 - 138),
+            new PointF(473, 400 - 137),
+            new PointF(460, 400 - 134),
+            new PointF(442, 400 - 140),
+            new PointF(429, 400 - 168),
+            new PointF(435, 400 - 202),
+            new PointF(441, 400 - 236),
+            new PointF(430, 400 - 270),
+            new PointF(415, 400 - 288),
+            new PointF(402, 400 - 292),
+            new PointF(391, 400 - 296),
+            new PointF(381, 400 - 308),
+            new PointF(359, 400 - 317),
+            new PointF(346, 400 - 316),
+            new PointF(322, 400 - 300),
+            new PointF(320, 400 - 219),
+            new PointF(320, 400 - 285),
+            new PointF(302, 400 - 288),
+            new PointF(244, 400 - 297),
+            new PointF(185, 400 - 286),
+            new PointF(131, 400 - 240)
+            };
+            maxpoint2 = elephant.Count;
+            points2 = elephant.ToArray();
             join2 = 1;
         }
 
-        private void draw_elephant_Click(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            maxpoint = 66;
-            points[0].X = 126; points[0].Y = 400 - 209;
-            points[1].X = 125; points[0].Y = 400 - 193;
-            points[1].X = 121; points[1].Y = 400 - 183;
-            points[2].X = 118; points[2].Y = 400 - 165;
-            points[3].X = 124; points[3].Y = 400 - 131;
-            points[4].X = 131; points[4].Y = 400 - 141;
-            points[5].X = 136; points[5].Y = 400 - 184;
-            points[6].X = 135; points[6].Y = 400 - 208;
-            points[7].X = 144; points[7].Y = 400 - 239;
-            points[8].X = 145; points[8].Y = 400 - 241;
-            points[9].X = 144; points[9].Y = 400 - 235;
-            points[10].X = 145; points[10].Y = 400 - 185;
-            points[11].X = 145; points[11].Y = 400 - 141;
-            points[12].X = 129; points[12].Y = 400 - 86;
-            points[13].X = 125; points[13].Y = 400 - 70;
-            points[14].X = 127; points[14].Y = 400 - 63;
-            points[15].X = 146; points[15].Y = 400 - 57;
-            points[16].X = 173; points[16].Y = 400 - 64;
-            points[17].X = 177; points[17].Y = 400 - 79;
-            points[18].X = 189; points[18].Y = 400 - 128;
-            points[19].X = 204; points[19].Y = 400 - 146;
-            points[20].X = 213; points[20].Y = 400 - 146;
-            points[21].X = 246; points[21].Y = 400 - 135;
-            points[22].X = 286; points[22].Y = 400 - 142;
-            points[23].X = 306; points[23].Y = 400 - 147;
-            points[24].X = 313; points[24].Y = 400 - 144;
-            points[25].X = 326; points[25].Y = 400 - 99;
-            points[26].X = 338; points[26].Y = 400 - 64;
-            points[27].X = 362; points[27].Y = 400 - 57;
-            points[28].X = 376; points[28].Y = 400 - 59;
-            points[29].X = 381; points[29].Y = 400 - 66;
-            points[30].X = 375; points[30].Y = 400 - 91;
-            points[31].X = 358; points[31].Y = 400 - 144;
-            points[32].X = 363; points[32].Y = 400 - 181;
-            points[33].X = 368; points[33].Y = 400 - 185;
-            points[34].X = 381; points[34].Y = 400 - 175;
-            points[35].X = 390; points[35].Y = 400 - 159;
-            points[36].X = 419; points[36].Y = 400 - 123;
-            points[37].X = 457; points[37].Y = 400 - 122;
-            points[38].X = 486; points[38].Y = 400 - 118;
-            points[39].X = 509; points[39].Y = 400 - 141;
-            points[40].X = 514; points[40].Y = 400 - 158;
-            points[41].X = 508; points[41].Y = 400 - 160;
-            points[42].X = 494; points[42].Y = 400 - 160;
-            points[43].X = 487; points[43].Y = 400 - 161;
-            points[44].X = 484; points[44].Y = 400 - 157;
-            points[45].X = 479; points[45].Y = 400 - 138;
-            points[46].X = 473; points[46].Y = 400 - 137;
-            points[47].X = 460; points[47].Y = 400 - 134;
-            points[48].X = 442; points[48].Y = 400 - 140;
-            points[49].X = 429; points[49].Y = 400 - 168;
-            points[50].X = 435; points[50].Y = 400 - 202;
-            points[51].X = 441; points[51].Y = 400 - 236;
-            points[52].X = 430; points[52].Y = 400 - 270;
-            points[53].X = 415; points[53].Y = 400 - 288;
-            points[54].X = 402; points[54].Y = 400 - 292;
-            points[55].X = 391; points[55].Y = 400 - 296;
-            points[56].X = 381; points[56].Y = 400 - 308;
-            points[57].X = 359; points[57].Y = 400 - 317;
-            points[58].X = 346; points[58].Y = 400 - 316;
-            points[59].X = 322; points[59].Y = 400 - 300;
-            points[60].X = 320; points[60].Y = 400 - 219;
-            points[61].X = 320; points[61].Y = 400 - 285;
-            points[62].X = 302; points[62].Y = 400 - 288;
-            points[63].X = 244; points[63].Y = 400 - 297;
-            points[64].X = 185; points[64].Y = 400 - 286;
-            points[65].X = 131; points[65].Y = 400 - 240;
-            join = 1;
+            tick++;
+            if (tick >= 10000) tick = 0;
+
+            for (int m = 0; m < maxpoint; m++)
+            {
+                points[m].X = points[m].X - (x[m] / frame);
+                points[m].Y = points[m].Y - (y[m] / frame);
+            }
+            animate();
+            if (tick >= frame) timer1.Enabled = false;
         }
     }
 }

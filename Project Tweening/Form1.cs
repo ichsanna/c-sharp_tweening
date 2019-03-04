@@ -61,7 +61,7 @@ namespace WindowsFormsApp1
                     if (curvepos[i] == 1)
                     {
                         i++;
-                        makecurve(i+1);
+                        makecurve(i + 1);
                     }
                     else
                     {
@@ -69,7 +69,7 @@ namespace WindowsFormsApp1
                     }
                     g.DrawEllipse(p, points[i].X, points[i].Y, 2, 2);
                 }
-                if (join==1) g.DrawLine(line, points[maxpoint - 1].X, points[maxpoint - 1].Y, points[0].X, points[0].Y);
+                if (join == 1) g.DrawLine(line, points[maxpoint - 1].X, points[maxpoint - 1].Y, points[0].X, points[0].Y);
             }
             if (current == 2)
             {
@@ -78,7 +78,7 @@ namespace WindowsFormsApp1
                     if (curvepos2[i] == 1)
                     {
                         i++;
-                        makecurve(i+1);
+                        makecurve(i + 1);
                     }
                     else
                     {
@@ -86,7 +86,7 @@ namespace WindowsFormsApp1
                     }
                     g.DrawEllipse(p, points2[i].X, points2[i].Y, 2, 2);
                 }
-                if (join2==1) g.DrawLine(line, points2[maxpoint2 - 1].X, points2[maxpoint2 - 1].Y, points2[0].X, points2[0].Y);
+                if (join2 == 1) g.DrawLine(line, points2[maxpoint2 - 1].X, points2[maxpoint2 - 1].Y, points2[0].X, points2[0].Y);
             }
         }
         private void animate()
@@ -328,12 +328,12 @@ namespace WindowsFormsApp1
             tick++;
             if (tick >= 10000) tick = 0;
 
-                    for (int m = 0; m < maxpoint; m++)
-                    {
-                        points[m].X = points[m].X - (x[m] / frame);
-                        points[m].Y = points[m].Y - (y[m] / frame);
-                    }
-                    animate();
+            for (int m = 0; m < maxpoint; m++)
+            {
+                points[m].X = points[m].X - (x[m] / frame);
+                points[m].Y = points[m].Y - (y[m] / frame);
+            }
+            animate();
             if (tick >= frame) timer1.Enabled = false;
         }
     }

@@ -114,6 +114,7 @@ namespace WindowsFormsApp1
         }
         private void button_animate_Click(object sender, EventArgs e)
         {
+            button_animate.Enabled = false;
             animatedari = 1;
             current = 1;
             for (int k = 0; k < maxpoint; k++)
@@ -463,11 +464,12 @@ namespace WindowsFormsApp1
             {
                 if (animatedari == 1)
                 {
-                    tick = 0;
+                    if (checkBox_bolakbalik.Checked) tick = 0;
                     animatedari = 2;
                 }
                 else if (animatedari == 2)
                 {
+                    button_animate.Enabled = true;
                     tick = 0;
                     timer1.Enabled = false;
                 }

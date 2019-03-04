@@ -41,6 +41,7 @@
             this.draw_whale = new System.Windows.Forms.Button();
             this.draw_elephant = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.checkBox_bolakbalik = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pb_canvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,7 +76,7 @@
             // 
             // button_animate
             // 
-            this.button_animate.Location = new System.Drawing.Point(267, 12);
+            this.button_animate.Location = new System.Drawing.Point(445, 12);
             this.button_animate.Name = "button_animate";
             this.button_animate.Size = new System.Drawing.Size(82, 31);
             this.button_animate.TabIndex = 6;
@@ -106,7 +107,7 @@
             // 
             // button_reset
             // 
-            this.button_reset.Location = new System.Drawing.Point(355, 12);
+            this.button_reset.Location = new System.Drawing.Point(533, 12);
             this.button_reset.Name = "button_reset";
             this.button_reset.Size = new System.Drawing.Size(82, 31);
             this.button_reset.TabIndex = 10;
@@ -158,12 +159,23 @@
             this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // checkBox_bolakbalik
+            // 
+            this.checkBox_bolakbalik.AutoSize = true;
+            this.checkBox_bolakbalik.Location = new System.Drawing.Point(320, 18);
+            this.checkBox_bolakbalik.Name = "checkBox_bolakbalik";
+            this.checkBox_bolakbalik.Size = new System.Drawing.Size(98, 21);
+            this.checkBox_bolakbalik.TabIndex = 15;
+            this.checkBox_bolakbalik.Text = "Bolak balik";
+            this.checkBox_bolakbalik.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1080, 565);
+            this.Controls.Add(this.checkBox_bolakbalik);
             this.Controls.Add(this.draw_elephant);
             this.Controls.Add(this.draw_whale);
             this.Controls.Add(this.label_canvas);
@@ -197,6 +209,7 @@
         private System.Windows.Forms.Button draw_whale;
         private System.Windows.Forms.Button draw_elephant;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.CheckBox checkBox_bolakbalik;
     }
 }
 

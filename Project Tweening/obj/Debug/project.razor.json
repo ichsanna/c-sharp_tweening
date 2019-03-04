@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "d:\\Courses & Labwork\\Semester 4\\Graphic Visualization Engineering\\c-sharp_tweening\\Project Tweening\\Project Tweening.csproj",
+  "TargetFramework": "v4.6.1",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  }
+}

@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//Dibuat oleh
+//Dian Rahmaji(17/413896/TK/46336)
+//Raden Ichsan Nur Aldiansyah(17/413915/TK/46355)
+
 namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
@@ -15,7 +19,7 @@ namespace WindowsFormsApp1
         Graphics g;
         Pen p = new Pen(Color.Black, 3);
         PointF cursor;
-        Pen line = new Pen(Color.CadetBlue, 3);
+        Pen line = new Pen(Color.Black, 5);
         PointF[] points = new PointF[400];
         PointF[] points2 = new PointF[400];
         int maxpoint = 0;
@@ -104,64 +108,41 @@ namespace WindowsFormsApp1
             new PointF(469, 400 - 195),
             new PointF(472, 400 - 210),
             new PointF(473, 400 - 216),
-            // new PointF(475, 400 - 225),
             new PointF(480, 400 - 225),
-            // new PointF(487, 400 - 225),
             new PointF(499, 400 - 226),
-            // new PointF(508, 400 - 230),
             new PointF(516, 400 - 238),
             new PointF(524, 400 - 250),
             new PointF(529, 400 - 261),
-            // new PointF(535, 400 - 273),
             new PointF(536, 400 - 282),
             new PointF(533, 400 - 285),
             new PointF(523, 400 - 283),
             new PointF(505, 400 - 280),
             new PointF(491, 400 - 283),
             new PointF(483, 400 - 285),
-            // new PointF(473, 400 - 284),
             new PointF(462, 400 - 279),
             new PointF(450, 400 - 286),
-            // new PointF(456, 400 - 282),
             new PointF(444, 400 - 289),
-            // new PointF(435, 400 - 289),
             new PointF(412, 400 - 286),
-            // new PointF(400, 400 - 289),
             new PointF(396, 400 - 285),
-            // new PointF(396, 400 - 266),
             new PointF(396, 400 - 256),
-            // new PointF(400, 400 - 249),
             new PointF(404, 400 - 242),
             new PointF(413, 400 - 236),
             new PointF(421, 400 - 234),
             new PointF(429, 400 - 234),
-            // new PointF(440, 400 - 234),
             new PointF(440, 400 - 223),
             new PointF(436, 400 - 212),
             new PointF(429, 400 - 203),
-            // new PointF(416, 400 - 195),
             new PointF(404, 400 - 192),
-            // new PointF(394, 400 - 192),
             new PointF(385, 400 - 194),
-            // new PointF(372, 400 - 203),
             new PointF(348, 400 - 232),
-            // new PointF(337, 400 - 248),
             new PointF(331, 400 - 255),
-            // new PointF(321, 400 - 264),
             new PointF(309, 400 - 270),
-            // new PointF(295, 400 - 275),
             new PointF(283, 400 - 275),
-            // new PointF(269, 400 - 276),
             new PointF(260, 400 - 276),
-            // new PointF(253, 400 - 276),
             new PointF(233, 400 - 276),
-            // new PointF(226, 400 - 277),
             new PointF(208, 400 - 279),
-            // new PointF(197, 400 - 280),
             new PointF(187, 400 - 281),
-            // new PointF(174, 400 - 280),
             new PointF(166, 400 - 280),
-            // new PointF(148, 400 - 273),
             new PointF(141, 400 - 268)
             };
             maxpoint = whale.Count;
@@ -298,17 +279,17 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < maxpoint; i++)
                 {
-                        if (i > 0) g.DrawLine(line, points[i - 1].X, points[i - 1].Y, points[i].X, points[i].Y);
-                        g.DrawEllipse(p, points[i].X, points[i].Y, 2, 2);
+                    if (i > 0) g.DrawLine(line, points[i - 1].X, points[i - 1].Y, points[i].X, points[i].Y);
+                    g.DrawEllipse(p, points[i].X, points[i].Y, 2, 2);
                 }
-               g.DrawLine(line, points[maxpoint - 1].X, points[maxpoint - 1].Y, points[0].X, points[0].Y);
+                g.DrawLine(line, points[maxpoint - 1].X, points[maxpoint - 1].Y, points[0].X, points[0].Y);
             }
             if (current == 2)
             {
                 for (int i = 0; i < maxpoint2; i++)
                 {
-                        if (i > 0) g.DrawLine(line, points2[i - 1].X, points2[i - 1].Y, points2[i].X, points2[i].Y);
-                        g.DrawEllipse(p, points2[i].X, points2[i].Y, 2, 2);
+                    if (i > 0) g.DrawLine(line, points2[i - 1].X, points2[i - 1].Y, points2[i].X, points2[i].Y);
+                    g.DrawEllipse(p, points2[i].X, points2[i].Y, 2, 2);
                 }
                 g.DrawLine(line, points2[maxpoint2 - 1].X, points2[maxpoint2 - 1].Y, points2[0].X, points2[0].Y);
             }
@@ -316,11 +297,7 @@ namespace WindowsFormsApp1
         private void animate()
         {
             g.Clear(Color.White);
-            for (int i = 0; i < maxpoint; i++)
-            {
-                    if (i > 0) g.DrawLine(line, points[i - 1].X, points[i - 1].Y, points[i].X, points[i].Y);
-                    //g.DrawEllipse(p, points[i].X, points[i].Y, 2, 2);
-            }
+            g.DrawLines(line, points);
             g.DrawLine(line, points[maxpoint - 1].X, points[maxpoint - 1].Y, points[0].X, points[0].Y);
         }
         private void button_animate_Click(object sender, EventArgs e)
